@@ -8,12 +8,12 @@ public class Main
 	{
 		System.out.println(sqrt(BigInteger.valueOf(76405081)));
 		
-		System.out.println(START);
-		BigInteger squ=sqrt(START);
-		System.out.println(squ);
-		for(BigInteger bi=START;bi.min(START).equals(START);bi.add(BigInteger.ONE)){
+		//System.out.println(START);
+		//BigInteger squ=sqrt(START);
+		//System.out.println(squ);
+		//for(BigInteger bi=START;bi.min(START).equals(START);bi.add(BigInteger.ONE)){
 			
-		}
+		//}
 	}
 	static{
 		StringBuilder sb=new StringBuilder("f");
@@ -23,6 +23,8 @@ public class Main
 	
 	public static BigInteger sqrt(BigInteger value){
 		//Thanked by http://www.suguru.jp/www.monjirou.net/semi/root/
+		
+		final BigInteger INT_MAX_VALUE=BigInteger.valueOf(Integer.MAX_VALUE);
 		
 		String strVal=value.toString();
 		String[] splitted=new String[(strVal.length()+((strVal.length()%2)==0?0:1))/2];
@@ -43,20 +45,26 @@ public class Main
 		BigInteger substactTmp=mutiplyTmp;
 		for(int i=0;i<splitted.length;i++){
 			if(0!=i){
-				mutiplyTmp=new BigInteger(mutiplyTmp.toString()+inderminate[i-1]);
-				substactTmp=new BigInteger(substactTmp.toString()+splitted[i-1]);
+				mutiplyTmp=mutiplyTmp.multiply(BigInteger.valueOf(10)).add(BigInteger.valueOf(inderminate[i-1]));
+				substactTmp=new BigInteger(substactTmp.toString()+splitted[i]);
 			}
-			for(int j=1;j<10;j++){
+			BigInteger multipliedE=null;
+			for(int j=1;j<11;j++){
 				BigInteger nowValue=new BigInteger(substactTmp.toString()+j);
-				if(!nowValue.multiply(BigInteger.valueOf(j)).max(substactTmp).equals(substactTmp)){
+				BigInteger multiplied=nowValue.multiply(BigInteger.valueOf(j));
+				System.err.println("nv ["+i+"]  =="+nowValue);
+				System.err.println("nv ["+i+"]*"+j+"=="+nowValue.multiply(BigInteger.valueOf(j)));
+				if(!multiplied.subtract(substactTmp).max(BigInteger.ZERO).equals(BigInteger.ZERO)){
 					inderminate[i]=j-1;
-					break;
+					multipliedE=multiplied;
 				}
 			}
 			if(inderminate[i]==-1){
 				throw new RuntimeException("Implementation bug");
 			}
-			substactTmp=substactTmp.subtract(new BigInteger(substactTmp.toString()+inderminate[i]).multiply(BigInteger.valueOf(inderminate[i])));
+			System.err.println("mule=="+multipliedE);
+			System.err.println("sbst=="+substactTmp);
+			substactTmp=substactTmp.subtract(multipliedE);
 		}
 		StringBuilder sb=new StringBuilder();
 		for(int v:inderminate){
