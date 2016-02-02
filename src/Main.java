@@ -56,6 +56,7 @@ public class Main
 				System.err.println("nv ["+i+"]*"+j+"=="+nowValue.multiply(BigInteger.valueOf(j)));
 				if(!multiplied.subtract(substactTmp).max(BigInteger.ZERO).equals(BigInteger.ZERO)){
 					inderminate[i]=j-1;
+				}else{
 					multipliedE=multiplied;
 				}
 			}
