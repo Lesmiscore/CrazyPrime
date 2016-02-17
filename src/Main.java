@@ -12,10 +12,11 @@ public class Main
 		BigInteger squ=sqrt(START);
 		System.out.println(squ);
 		
+		System.out.println(PrimeChecker.isPrime(START));
 	}
 	static{
 		StringBuilder sb=new StringBuilder("f");
-		for(int i=0;i<11;i++)sb.append(sb);
+		for(int i=0;i<15;i++)sb.append(sb);
 		START=new BigInteger(""+sb,16);
 	}
 	
