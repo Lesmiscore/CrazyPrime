@@ -9,8 +9,8 @@ public class Main
 		System.out.println(sqrt(BigInteger.valueOf(76405081)));
 		
 		System.out.println(START);
-		BigInteger squ=sqrt(START);
-		System.out.println(squ);
+		//BigInteger squ=sqrt(START);
+		//System.out.println(squ);
 		
 		System.out.println(PrimeChecker.isPrime(START));
 	}
