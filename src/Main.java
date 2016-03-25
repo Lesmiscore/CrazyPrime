@@ -6,6 +6,7 @@ public class Main
 	static final BigInteger START;
 	public static void main(String[] args)
 	{
+		System.out.println(PrimeChecker.isPrime(BigInteger.valueOf(1001)));
 		System.out.println(sqrt(BigInteger.valueOf(76405081)));
 		
 		System.out.println(START);
